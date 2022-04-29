@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('advert', AdvertController::class);
+Route::resource('/advert', AdvertController::class);

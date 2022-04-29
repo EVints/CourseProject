@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AdvertController extends Controller
 {
@@ -13,8 +15,7 @@ class AdvertController extends Controller
      */
     public function index()
     {
-        echo 'Hi';
-        die();
+        return view('advert.index', ['advert_list' => Advert::all()]);
     }
 
     /**
@@ -36,7 +37,36 @@ class AdvertController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $advert = new Advert();
+
+        // $table->integer('user_id');
+        // $table->dateTime('from');
+        // $table->dateTime('to');
+        // $table->json('meet')->nullable();
+        // $table->json('finish')->nullable();
+        // $table->json('ride')->nullable();
+        // $table->integer('meet_radius');
+        // $table->integer('ride_radius');
+        // $table->integer('type');
+        // $table->text('description');
+
+        $advert->user_id = 1;
+        $advert->from = $request->request->get('from');
+        $advert->to = $request->request->get('to');
+        $advert->meet = "[" . $request->request->get('point_meet') . "]";
+        $advert->finish = "[" . $request->request->get('point_end') . "]";
+        $advert->type = $request->request->get('type');
+        $advert->meet_radius = 1;
+        $advert->ride_radius = 1;
+        $advert->description = "desc";
+
+
+
+        $advert->save();
+
+        return Redirect::to('/advert')->with("success", "Ok");
+
+        // dd($request);
     }
 
     /**
