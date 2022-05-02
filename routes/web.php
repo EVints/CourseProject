@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdvertController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Registration;
+use App\Http\Controllers\Login;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,12 @@ Route::get('/', function () {
 });
 
 Route::resource('/advert', AdvertController::class);
+
+
+Route::get('/registration', [Registration::class, 'index']);
+
+Route::post('/registration', [Registration::class, 'registration']);
+
+Route::get('/login', [Login::class, 'login']);
+
+Route::post('/login', [Login::class, 'getLogin']);
