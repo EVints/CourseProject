@@ -1558,7 +1558,7 @@ table a,
 	}
 }
 
-@media screen and (min-width:978px) and (max-width:1140px) {
+@media screen and (min-width:850px) and (max-width:1140px) {
 	.hoc {
 		max-width: 95%;
 	}
@@ -1567,7 +1567,7 @@ table a,
 
 /* Mobile Devices
 --------------------------------------------------------------------------------------------------------------- */
-@media screen and (max-width:978px) {
+@media screen and (max-width:850px) {
 	.hoc {
 		max-width: 90%;
 	}

@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function hashPassword(string $password): string
+    {
+        return hash('sha256', $password);
+    }
 }

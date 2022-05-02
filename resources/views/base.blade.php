@@ -16,7 +16,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="/layout/styles/pokatuszkiStyle.css">
-    
+
 </head>
 
 
@@ -44,8 +44,12 @@ Licence URI: https://www.os-templates.com/template-terms
                     <ul class="nospace">
                         <li><a href="index.html"><i class="fas fa-home"></i></a></li>
                         <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
-                        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+                        @if(Session::has('user-session-key'))
+                        <li><a href="/profile" title="Profile {!!Session::get('user-session-key')->name!!}"><i class="far fa-life-ring"></i></a></li>
+                        @else
+                        <li><a href="/login" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a href="/registration" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+                        @endif
                         <li id="searchform">
                             <div>
                                 <form action="#" method="post">
