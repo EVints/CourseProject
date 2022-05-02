@@ -4,6 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y git unzip
 
+RUN groupadd --gid 1000 docker
+
+RUN useradd --gid 1000 --uid 1000 docker
 
 ################# COMPOSER ########################
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -18,6 +21,8 @@ RUN apt-get update && \
     docker-php-ext-install pdo pdo_pgsql pgsql
 
 COPY .deploy/docker/backend/entrypoint.sh /entrypoint-component.sh
+
+USER docker:docker
 
 EXPOSE 9000
 
