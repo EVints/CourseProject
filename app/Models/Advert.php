@@ -14,10 +14,10 @@ class Advert extends Model
     /**
      * @return string
      */
-    public function getMeetForGoogleLink(): string
+    public function getTrackForGoogleLink(): string
     {
-        $pointList = json_decode($this->meet, true);
+        $pointList = json_decode($this->track, true);
 
-        return join(",", $pointList);
+        return $pointList;
     }
 }

@@ -1,11 +1,23 @@
 @extends('base')
 
+
+
+
+@section('pageIntro')
+<article>
+    <h3 class="heading">Finibus dictum lobortis</h3>
+    <p>Libero sed ullamcorper nibh dignissim et curabitur cursus scelerisque metus sit amet sodales justo auctor sit amet proin quis lacus non nisi.</p>
+    <footer>
+        <ul class="nospace inline pushright">
+            <li><a class="btn" href="#">Pharetra etiam</a></li>
+            <li><a class="btn inverse" href="#">Sagittis massa</a></li>
+        </ul>
+    </footer>
+</article>
+@endsection
+
+
 @section('mainBody')
-
-
-
-
-
 
 <!-- main body -->
 <!-- ################################################################################################ -->

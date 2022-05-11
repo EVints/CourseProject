@@ -156,7 +156,7 @@ File: Layout CSS
 /* Page Intro
 --------------------------------------------------------------------------------------------------------------- */
 #pageintro {
-	padding: 200px 0 300px;
+	padding: 100px 0 200px;
 }
 
 /* 300px => 100px for #introblocks negative margin */
@@ -644,7 +644,8 @@ File: Layout CSS
 	border: 1px solid;
 }
 
-#footer input {
+#footer input,
+form input {
 	display: block;
 	width: 100%;
 	padding: 8px;
@@ -1412,12 +1413,14 @@ textarea:focus,
 	border-color: transparent;
 }
 
-#footer input {
+#footer input,
+form input {
 	color: #474747;
 	background-color: rgba(255, 255, 255, .8);
 }
 
-#footer input:focus {
+#footer input:focus,
+form input:focus {
 	border-color: #FBAB45;
 }
 
@@ -1558,7 +1561,7 @@ table a,
 	}
 }
 
-@media screen and (min-width:850px) and (max-width:1140px) {
+@media screen and (min-width:978px) and (max-width:1140px) {
 	.hoc {
 		max-width: 95%;
 	}
@@ -1567,7 +1570,7 @@ table a,
 
 /* Mobile Devices
 --------------------------------------------------------------------------------------------------------------- */
-@media screen and (max-width:850px) {
+@media screen and (max-width:978px) {
 	.hoc {
 		max-width: 90%;
 	}
