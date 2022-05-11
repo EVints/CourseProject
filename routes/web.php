@@ -30,3 +30,8 @@ Route::post('/registration', [Registration::class, 'registration']);
 Route::get('/login', [Login::class, 'login']);
 
 Route::post('/login', [Login::class, 'getLogin']);
+
+
+Route::get('/gallery', function () {
+    return view('gallery');
+});

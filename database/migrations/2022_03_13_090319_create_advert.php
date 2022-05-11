@@ -16,16 +16,13 @@ class CreateAdvert extends Migration
         Schema::create('advert', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->dateTime('from');
-            $table->dateTime('to');
-            $table->json('meet')->nullable();
-            $table->json('finish')->nullable();
-            $table->json('ride')->nullable();
-            $table->integer('meet_radius');
-            $table->integer('ride_radius');
-            $table->integer('type');
-            $table->text('description');
+            $table->text('user_name', 64);
+            $table->dateTime('time_from');
+            $table->dateTime('time_to');
+            $table->text('tel', 16);
+            $table->text('trip_description', 1024);
+            $table->json('track');                          //!!!!!!!!!
+            $table->text('trip_type', 16)->nullable();
         });
     }
 

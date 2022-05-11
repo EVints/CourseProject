@@ -50,15 +50,20 @@ class AdvertController extends Controller
         // $table->integer('type');
         // $table->text('description');
 
-        $advert->user_id = 1;
-        $advert->from = $request->request->get('from');
-        $advert->to = $request->request->get('to');
-        $advert->meet = "[" . $request->request->get('point_meet') . "]";
-        $advert->finish = "[" . $request->request->get('point_end') . "]";
-        $advert->type = $request->request->get('type');
-        $advert->meet_radius = 1;
-        $advert->ride_radius = 1;
-        $advert->description = "desc";
+        $advert->user_name = $request->request->get('user_name');
+
+        $advert->time_from = $request->request->get('time_from');
+        $advert->time_to = $request->request->get('time_to');
+
+        $advert->tel = $request->request->get('tel');
+
+        $advert->trip_description = $request->request->get('trip_description');
+
+        $advert->track = $request->request->get('track');
+
+        $advert->trip_type = $request->request->get('trip_type');
+
+
 
 
 
