@@ -24,13 +24,21 @@ class Login extends Controller
             $currentUser = $user->first();
             $currentUser->token = hash('sha256', rand(1000, 100000) . md5(time()));
             $currentUser->save();
-            Session::put("user-session-key", $currentUser);
+            Session::put("user_session_key", $currentUser);
 
 
 
-            return redirect('/')->withCookie(new Cookie('user-token', $currentUser->token, 525600));
+            return redirect('/')->withCookie(new Cookie('user_token', $currentUser->token, 525600));
         } else {
             return redirect('/login')->withErrors(['err' => 'Пользователь не найден']);
         }
     }
+
+    public function logOut(Request $request) {
+        
+        $request->session()->forget('user_session_key');
+        return redirect('/');
+           
+         }
 }
+

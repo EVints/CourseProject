@@ -5,96 +5,120 @@
 
 @section('mainBody')
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNlu_RBmMgRYmm6D2FicTgl6aMA43tVU4&callback=initMap&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNlu_RBmMgRYmm6D2FicTgl6aMA43tVU4&language=pl&callback=initMap&av=weekly" defer></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 
-<h2>Заявка на поездку</h2>
-<form method="post" action="/advert">
-    @csrf
+<div class="wrapper row3">
+    <main class="hoc container clear">
 
-    <ul>
+        <h1>Заявка на поездку</h1>
+        <form method="post" action="/advert" id="create_advert">
+            @csrf
 
-        <!-- #############  User name   ######################## -->
-        <li>
-            <label for="userName">Имя пользователя</label>
-            <input type="text" name="user_name" id="userName" value="Имя пользователя" required>
-        </li>
-
-
-
-        <!-- ############   Travel time   ##################### -->
-        <li>
-            <label for="time_from">Время сбора</label>
-            <input type="datetime-local" name="time_from" id="time_from" required>
-        </li>
-
-        <li>
-            <label for="time_to">Окончание поездки</label>
-            <input type="datetime-local" name="time_to" id="time_to" required>
-        </li>
+            <ul id="advert_ul">
+                <!-- #############  User name   ######################## -->
+                <li>
+                    @if(Session::has('user_session_key'))
+                    <input type="text" name="user_name" id="user_name" placeholder="Имя пользователя" value="{!!Session::get('user_session_key')->name!!}" readonly="" disabled>
+                    @else
+                    <input type="text" name="user_name" id="user_name" placeholder="Имя пользователя" required disabled>
+                    @endif
+                </li>
 
 
-
-        <!-- ############   Phone   ##################### -->
-        <li>
-            <label for="tel">Контактный телефон</label>
-            <input type="tel" name="tel" id="tel" required>
-        </li>
+                <!-- ############   Phone   ##################### -->
+                <li>
+                    <input type="tel" name="user_phone" id="user_phone" placeholder="Контактный телефон" required>
+                </li>
 
 
+                <!-- ############   Travel time   ##################### -->
+                <li>
+                    <label for="time_from">Время сбора</label>
+                    <input type="datetime-local" name="time_from" id="time_from" required>
+                </li>
+
+                <li>
+                    <label for="start_address">Точка сбора</label>
+                    <input type="text" name="start_address" id="start_address" readonly="" required>
+                </li>
 
 
-        <!-- ############   Description   ##################### -->
-        <li>
-            <textarea name="trip_description" id="trip_description" cols="50" rows="4" required placeholder="Описание поездки"></textarea>
-        </li>
+                <li>
+                    <input type="text" name="time_to" id="time_to" value="Окончание поездки" readonly="" required>
+                </li>
+
+                <li>
+                    <input type="text" name="end_address" id="end_address" value="Точка прибытия" readonly="" required>
+                </li>
 
 
+                <!-- ############   Description   ##################### -->
+                <li>
+                    <textarea name="trip_description" id="trip_description" required placeholder="Описание поездки"></textarea>
+                </li>
 
+                <li>
+                    <input type="number" placeholder="Количество участников" name="participants_count" id="participants_count" required>
+                </li>
 
-        <!-- ############   Google Maps  ##################### -->
-        <li>
-            <label for="point_meet">Маршрут поездки</label>
+                <li>
+                    <input type="submit" value="Оставить заявку">
+                </li>
+            </ul>
+
+            <!-- ############   Google Maps  ##################### -->
             <div id="container">
-            <p>Total Distance: <span id="total"></span></p>
+                <p>Total Distance: <span id="distance"></span></p>
                 <div class="route_map" id="route_map"></div>
                 <!-- <div id="sidebar">
                     <p>Total Distance: <span id="total"></span></p>
                     <div id="panel"></div>
                 </div> -->
+                <input type="hidden" name="track" id="track" value="">
+                <input type="hidden" name="total_distance" id="total_distance" value="">
             </div>
-            <input type="hidden" name="track" id="track" value="">
-        </li>
 
+        </form>
 
-
-        <!-- ############   Trip Type  ##################### -->
-
-        <li>
-            <label for="trip_type">Вид поездки</label>
-            <select name="trip_type" id="trip_type">
-                <option value="1">Лёгкая прогулка</option>
-                <option value="2">Прогулка с Гидом</option>
-                <option value="3">Заезд на время</option>
-            </select>
-        </li>
-
-
-        <li>
-            <input type="submit" value="Оставить заявку">
-        </li>
-
-    </ul>
-</form>
+        <div class="clear"></div>
+    </main>
+</div>
 
 
 
 <script>
-    let track = document.getElementById("track");
-    let res = {};
+    let track = document.getElementById("track"),
+        time_from = document.getElementById("time_from"),
+        time_to = document.getElementById("time_to"),
+        start_address = document.getElementById("start_address"),
+        end_address = document.getElementById("end_address"),
+        tripTime = 0;
 
+    let res = {};
     let dir = {};
+
+
+    function calcTripTimeEnd(date, sec) {
+        if (!date) {
+            return;
+        }
+        date = new Date(date);
+
+
+        if (date < new Date) {
+            alert("Вы не можете кататьcя в прошлом!");
+            time_from.value = "0";
+            return;
+        }
+        date.setSeconds(date.getSeconds() + sec);
+        time_to.value = date;
+    }
+
+
+    time_from.addEventListener("change", () => calcTripTimeEnd(time_from.value, tripTime));
+
 
     function initMap() {
         const map = new google.maps.Map(document.getElementById("route_map"), {
@@ -114,8 +138,12 @@
         directionsRenderer.addListener("directions_changed", () => {
             const directions = directionsRenderer.getDirections();
             track.value = JSON.stringify(directions);
-            console.log(track.value);
 
+            start_address.value = directions.routes[0].legs[0].start_address;
+            end_address.value = directions.routes[0].legs[0].end_address;
+            tripTime = directions.routes[0].legs[0].duration.value;
+
+            calcTripTimeEnd(time_from.value, tripTime);
 
             if (directions) {
                 computeTotalDistance(directions);
@@ -154,16 +182,20 @@
         let total = 0;
         const myroute = result.routes[0];
 
+
         if (!myroute) {
             return;
         }
 
         for (let i = 0; i < myroute.legs.length; i++) {
             total += myroute.legs[i].distance.value;
+
         }
 
         total = total / 1000;
-        document.getElementById("total").innerHTML = total + " km";
+        document.getElementById("distance").innerHTML = total + " km";
+        document.getElementById("total_distance").value = total;
+
     }
 
     window.initMap = initMap;

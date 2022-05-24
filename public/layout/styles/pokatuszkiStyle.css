@@ -32,28 +32,9 @@ td {
     color: gray;
     border-collapse: collapse;
     border: 0px;
-    width: 900px;
+    width: 40rem;
 }
 
-#showMap {
-    cursor: pointer;
-    font-weight: 700;
-}
-
-#meetMap,
-#routeMap {
-    position: absolute;
-    display: none;
-}
-
-#showMap:hover+iframe {
-    display: block;
-}
-
-
-iframe:hover iframe {
-    display: block;
-}
 
 .login_error {
     font-size: 20px;
@@ -66,28 +47,229 @@ form input[type="submit"]:hover {
 
 
 
+/* ############ Create Advert ##################### */
 
+h1 {
+    margin-bottom: 2rem;
+}
 
+#create_advert {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
 
 #container {
-    height: 30rem;
-    /* display: flex; */
+    -webkit-box-flex: 5;
+    -ms-flex-positive: 5;
+    flex-grow: 5;
+}
+
+
+.route_map {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 4;
+    -ms-flex-positive: 4;
+    flex-grow: 4;
+    height: 80%;
+    /* position: fixed !important; */
+
+}
+
+
+#advert_ul {
+    margin: 0;
+    padding: 0;
+    margin-right: 4rem;
+    -webkit-box-flex: 3;
+    -ms-flex-positive: 3;
+    flex-grow: 3;
+}
+
+
+#advert_ul li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+}
+
+
+#trip_description {
+    width: 100%;
 }
 
 
 #sidebar {
+    -ms-flex-preferred-size: 15rem;
     flex-basis: 15rem;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     padding: 1rem;
     max-width: 30rem;
     height: 100%;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: scroll;
 }
 
 
-.route_map {
-    flex-basis: 0;
-    flex-grow: 4;
-    height: 30rem;
+.showCloseMap {
+    height: 30rem !important;
+}
+
+.show_maps {
+    height: 0px;
+    -webkit-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}
+
+/* ####################################################### */
+
+.adverts,
+.adverts tr,
+.adverts td {
+    border-collapse: collapse;
+    border: 0px;
+    vertical-align: middle;
+}
+
+.adverts {
+    margin-bottom: 3rem;
+    border: 1px solid rgb(218, 218, 218);
+
+}
+
+
+
+.show_adverts {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+}
+
+.organizer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.organizer img {
+    height: 5rem;
+}
+
+
+
+/* ##################### Profile #################### */
+
+.profile_ava {
+    height: 20rem;
+    width: 20rem;
+    border-radius: 2rem;
+    margin-right: 5rem;
+}
+
+.profile_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    padding: 4rem 2em;
+}
+
+.profile_table,
+.profile_table tr,
+.profile_table td {
+    border-collapse: collapse;
+    border: 0px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5rem;
+}
+
+.profile_table {
+    height: 20rem;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+
+/* #################### Gallery ######################## */
+
+
+.display_gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    overflow: hidden;
+
+}
+
+.display_gallery li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style-type: none;
+    -ms-flex-preferred-size: 22rem;
+    flex-basis: 22rem;
+    margin: auto;
+
+
+}
+
+.display_gallery img {
+    height: 12rem;
+}
+
+
+
+.imgover img {
+    height: 18rem !important;
+    border-radius: 1rem;
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advert;
+use App\Models\User;
+use App\Models\SubmitAdvertModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AdvertController extends Controller
 {
@@ -15,8 +18,13 @@ class AdvertController extends Controller
      */
     public function index()
     {
-        return view('advert.index', ['advert_list' => Advert::all()]);
+
+        return view('advert.index', [
+            'advert_list' => $this->getAdvertList()->sortByDesc('time_from'),
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,41 +45,35 @@ class AdvertController extends Controller
      */
     public function store(Request $request)
     {
+        if(!Session::get("user_session_key")) {
+            return Redirect::to('/login')->withErrors(['err' => 'Для подачи заявки требуется регистрация']);
+        } else {
+        
         $advert = new Advert();
 
-        // $table->integer('user_id');
-        // $table->dateTime('from');
-        // $table->dateTime('to');
-        // $table->json('meet')->nullable();
-        // $table->json('finish')->nullable();
-        // $table->json('ride')->nullable();
-        // $table->integer('meet_radius');
-        // $table->integer('ride_radius');
-        // $table->integer('type');
-        // $table->text('description');
+        
+        $advert->user_id = Session::get("user_session_key")->id;
 
-        $advert->user_name = $request->request->get('user_name');
+        $advert->user_phone = $request->request->get('user_phone');
+
 
         $advert->time_from = $request->request->get('time_from');
-        $advert->time_to = $request->request->get('time_to');
+        $advert->start_address = $request->request->get('start_address');
 
-        $advert->tel = $request->request->get('tel');
+        $advert->time_to = $request->request->get('time_to');
+        $advert->end_address = $request->request->get('end_address');
 
         $advert->trip_description = $request->request->get('trip_description');
 
+        $advert->participants_count = $request->request->get('participants_count');
+
+        $advert->total_distance = $request->request->get('total_distance');
         $advert->track = $request->request->get('track');
-
-        $advert->trip_type = $request->request->get('trip_type');
-
-
-
-
 
         $advert->save();
 
         return Redirect::to('/advert')->with("success", "Ok");
-
-        // dd($request);
+        }
     }
 
     /**
@@ -117,5 +119,36 @@ class AdvertController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    private function getAdvertList()
+    {
+        $advertList = Advert::all();
+        $userIdList = [];
+        foreach($advertList as $item) {
+            $userIdList[] = $item->user_id;
+        }
+
+
+        
+
+        $users = User::whereIn("id", $userIdList)->get();
+       
+
+        $avatars = [];
+        $names = [];
+        foreach($users as $item){
+            $avatars[$item->id] = $item->user_avatar;
+            $names[$item->id] = $item->name;
+        }
+        
+
+        foreach($advertList as $item) {
+            $item->user_avatar = $avatars[$item->user_id] ?? '';
+            $item->name = $names[$item->user_id] ?? '';
+        }
+        // dd($advertList);
+        return $advertList;
     }
 }

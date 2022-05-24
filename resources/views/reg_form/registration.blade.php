@@ -1,12 +1,12 @@
 @extends('base')
 
 @section('pageIntro')
-@endsection
+<div id="pageintro" class="hoc clear" style="padding-bottom: 20px;">
+      <!-- ################################################################################################ -->
 
-@section('mainBody')
 
-
-Registration form
+<article>
+<h3 class="heading">Registered in<br>Velopokatuszki</h3>
 
 <form method="post" enctype="multipart/form-data">
     @csrf
@@ -16,9 +16,9 @@ Registration form
 
     <p>
         <label for="sex">Sex</label>
-        <select name="sex" id="sex">
-            <option value="M">Male</option>
-            <option value="F">Female</option>
+        <select name="sex" id="sex" style="color:black;">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
             <option value="">WTF? O_o</option>
         </select>
     </p>
@@ -29,10 +29,19 @@ Registration form
     <p><label for="user_avatar">Avatar (optional)</label><input type="file" name="user_avatar" id="user_avatar"></p>
 
 
-
-
-    <p><input type="submit" value="send"></p>
+    <p><input type="submit" value="Registrate"></p>
 </form>
 
+</article>
 
+</div>
+
+@endsection
+
+@section('mainBody')
+
+
+@endsection
+
+@section('[pageInformation]')
 @endsection

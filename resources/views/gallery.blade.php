@@ -1,6 +1,9 @@
 @extends('base')
 
 
+
+
+
 @section('mainBody')
 <div class="wrapper row3">
   <main class="hoc container clear">
@@ -9,28 +12,35 @@
     <div class="content">
       <!-- ################################################################################################ -->
       <div id="gallery">
+     
+
+      @if(Session::has('user_session_key'))
+      @if(Session::get('user_session_key')->super_user)
+      
+      <form method="post" enctype="multipart/form-data">
+      @csrf
+      <p><label for="photo_add">Add new photo</label><input type="file" name="photo_add" id="photo_add"></p>
+      <input type="submit" value="Добавить фоточку :)">
+      </form>
+      @endif
+      @endif
         <figure>
-          <header class="heading">Gallery Title Goes Here</header>
-          <ul class="nospace clear">
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+          <header class="heading">Фото галлерея</header>
+          <ul class="display_gallery">
+
+          @foreach ($photo_gallery as $item)
+
+          <li class=""><a href="{{ $item->photo }}"><img src="{{ $item->photo }}" alt=""></a></li>
+
+          @endforeach
+
           </ul>
-          <figcaption>Gallery Description Goes Here</figcaption>
+          <!-- <figcaption>Gallery Description Goes Here</figcaption> -->
         </figure>
       </div>
       <!-- ################################################################################################ -->
       <!-- ################################################################################################ -->
-      <nav class="pagination">
+      <!-- <nav class="pagination">
         <ul>
           <li><a href="#">&laquo; Previous</a></li>
           <li><a href="#">1</a></li>
@@ -45,7 +55,7 @@
           <li><a href="#">15</a></li>
           <li><a href="#">Next &raquo;</a></li>
         </ul>
-      </nav>
+      </nav> -->
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
