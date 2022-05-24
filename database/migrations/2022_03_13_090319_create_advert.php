@@ -15,14 +15,17 @@ class CreateAdvert extends Migration
     {
         Schema::create('advert', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->timestamps();
-            $table->text('user_name', 64);
+            $table->text('user_phone', 16);
             $table->dateTime('time_from');
-            $table->dateTime('time_to');
-            $table->text('tel', 16);
-            $table->text('trip_description', 1024);
-            $table->json('track');                          //!!!!!!!!!
-            $table->text('trip_type', 16)->nullable();
+            $table->text('time_to', 64);
+            $table->text('start_address', 64);
+            $table->text('end_address', 64);
+            $table->text('trip_description', 1024)->nullable();
+            $table->smallinteger('participants_count');
+            $table->float('total_distance');
+            $table->json('track');
         });
     }
 

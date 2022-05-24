@@ -22,15 +22,15 @@ class CookieLogin
     {
 
         if (
-            !Session::has('user-session-key')
-            && $request->cookie('user-token')
+            !Session::has('user_session_key')
+            && $request->cookie('user_token')
         ) {
-            $user = User::where('token', $request->cookie('user-token'))->first();
+            $user = User::where('token', $request->cookie('user_token'))->first();
 
             if ($user) {
-                Session::put("user-session-key", $user);
+                Session::put("user_session_key", $user);
             } else {
-                Cookie::queue(Cookie::forget('user-token'));
+                Cookie::queue(Cookie::forget('user_token'));
             }
         }
 

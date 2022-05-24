@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('user_birthday');
             $table->string('user_avatar');
             $table->string('token', 256)->nullable();
+            $table->boolean('super_user')->nullable();
         });
     }
 

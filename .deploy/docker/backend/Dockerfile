@@ -21,6 +21,12 @@ RUN apt-get update && \
     apt-get install -y libpq-dev && \
     docker-php-ext-install pdo pdo_pgsql pgsql
 
+RUN \
+    echo "max_file_uploads=10" >> /usr/local/etc/php/conf.d/velo.ini \
+    && echo "post_max_size=20M" >> /usr/local/etc/php/conf.d/velo.ini \
+    && echo "upload_max_filesize=20M" >> /usr/local/etc/php/conf.d/velo.ini \
+    && echo "date.timezone=Europe/Warsaw" >> /usr/local/etc/php/conf.d/velo.ini
+
 COPY .deploy/docker/backend/entrypoint.sh /entrypoint-component.sh
 
 USER docker:docker

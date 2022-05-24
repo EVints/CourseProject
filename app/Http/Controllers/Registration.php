@@ -39,6 +39,7 @@ class Registration extends Controller
         $dest_path = $uploadFileDir . $newFileName;
         $allowedfileExtensions = array('jpg', 'jpeg', 'gif', 'png');
 
+        
         if (isset($_FILES['user_avatar']) && in_array($fileExtension, $allowedfileExtensions)) {
             move_uploaded_file($fileTmpPath, $dest_path);
 
@@ -47,9 +48,9 @@ class Registration extends Controller
 
             // Set Default Avatar
 
-            if ($request->request->get('sex') == "M") {
+            if ($request->request->get('sex') == "Male") {
                 $user->user_avatar = "images/default/ava_m.jpeg";
-            } elseif ($request->request->get('sex') == "F") {
+            } elseif ($request->request->get('sex') == "Female") {
                 $user->user_avatar = "images/default/ava_f.jpeg";
             } else {
                 $user->user_avatar = "images/default/ava_nn.jpeg";
