@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/advert', AdvertController::class);
-Route::post('/advert', [SubmitAdvert::class, 'submitAdd']);
+// Route::post('/advert', [SubmitAdvert::class, 'submitAdd']);
 
 
 Route::get('/registration', [Registration::class, 'index']);

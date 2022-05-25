@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Advert;
 use App\Models\User;
-use App\Models\SubmitAdvertModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -129,9 +128,6 @@ class AdvertController extends Controller
         foreach($advertList as $item) {
             $userIdList[] = $item->user_id;
         }
-
-
-        
 
         $users = User::whereIn("id", $userIdList)->get();
        
