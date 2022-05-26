@@ -20,14 +20,11 @@ class PhotoController extends Controller
 
     public function photoAdd(Request $request)
     {
-
-
-
-        if(!$_FILES['photo_add']['name']) {
+        if (!$_FILES['photo_add']['name']) {
             return redirect('/gallery');
         }
 
-     $gallery = new PhotoGallery();
+        $gallery = new PhotoGallery();
 
 
         $fileTmpPath = $_FILES['photo_add']['tmp_name'];
@@ -41,14 +38,11 @@ class PhotoController extends Controller
         $dest_path = $uploadFileDir . $newFileName;
         // $allowedfileExtensions = array('jpg', 'jpeg', 'gif', 'png');
 
-            move_uploaded_file($fileTmpPath, $dest_path);
-            $gallery->photo = $dest_path;     
-        
+        move_uploaded_file($fileTmpPath, $dest_path);
+        $gallery->photo = $dest_path;
 
-        
         $gallery->save();
 
         return redirect('/gallery');
     }
-    
 }

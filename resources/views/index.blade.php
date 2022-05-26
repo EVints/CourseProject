@@ -29,7 +29,7 @@
             <figure><a class="imgover" href="journey#table1"><img src="/images/design/IMG_20200804_190304.jpg" alt=""></a>
                 <figcaption>
                     <h6 class="heading">Поездка в соляные шахты</h6>
-                    <p>Незабываемая поездка к месторождению соляных окаменелостей. Прекрасное место для отдыха всей семъёй</p>
+                    <p>Незабываемая поездка к месторождению соляных окаменелостей. Прекрасное место для отдыха всей семьёй</p>
                 </figcaption>
             </figure>
         </li>
@@ -45,7 +45,7 @@
             <figure><a class="imgover" href="/journey#table2"><img src="/images/design/IMG_20200807_164117.jpg" alt=""></a>
                 <figcaption>
                     <h6 class="heading">Сплав на байдарках</h6>
-                    <p>Трёъдневное путешествие к реке со сплавом на бадарках</p>
+                    <p>Трёхдневное путешествие к реке со сплавом на байдарках</p>
                 </figcaption>
             </figure>
         </li>
@@ -56,7 +56,7 @@
 <!-- ################################################################################################ -->
 <section id="overview">
     <div class="sectiontitle">
-        <p class="heading underline font-x2">Дорога возгикает под ногами идущего</p>
+        <p class="heading underline font-x2">Дорога возникает под ногами идущего</p>
     </div>
     <ul class="nospace group btmspace-80">
         <li class="one_third">
@@ -80,7 +80,7 @@
                 <div class="clear"><a href="#"><i class="fas fa-battery-full"></i></a>
                     <h6 class="heading">Ваш отдых - наше хобби</h6>
                 </div>
-                <p>Именно поэтому вы не останетесь равнодуными</p>
+                <p>Именно поэтому вы не останетесь равнодушными</p>
             </article>
         </li>
     </ul>
@@ -174,7 +174,7 @@
             <div class="one_half overlay">
                 <ul class="nospace">
                     <li>
-                        <blockquote>Все маршруты, которыми мы пользуемся в наших поездках являются результатом авторской работы целой команды проффесионалов. Мы не изем лёгких и коротких путей. Всё, что клиенты видет на наших маршрутах - недоступно 90% обывателей</blockquote>
+                        <blockquote>Все маршруты, которыми мы пользуемся в наших поездках являются результатом авторской работы целой команды проффесионалов. Мы не ищем лёгких и коротких путей. Всё, что клиенты видят на наших маршрутах - недоступно 90% обывателей</blockquote>
                         <figure class="clear"><img class="circle" src="/images/demo/60x60.png" alt="">
                             <figcaption>
                                 <h6 class="heading">Anica</h6>
