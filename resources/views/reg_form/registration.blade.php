@@ -11,6 +11,7 @@
 <form method="post" enctype="multipart/form-data">
     @csrf
     <p><label for="name">Name</label><input class="btmspace-15" type="text" name="name" id="name"></p>
+    <p class="login_error">{!!$errors->first()!!}</p>
     <p><label for="email">Email</label><input class="btmspace-15" type="email" name="email" id="email"></p>
     <p><label for="password">Password</label><input class="btmspace-15" type="password" name="password" id="password"></p>
 
@@ -28,7 +29,7 @@
 
     <p><label for="user_avatar">Avatar (optional)</label><input type="file" name="user_avatar" id="user_avatar"></p>
 
-
+    
     <p><input type="submit" value="Registrate"></p>
 </form>
 

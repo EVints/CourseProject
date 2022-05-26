@@ -17,6 +17,9 @@ class Registration extends Controller
     public function registration(RegistrationRequests $request)
     {
 
+        if(User::exists($request->request->get('email'))) {
+            return redirect('/registration')->withErrors(['err' => 'Пользователь с таким email уже усуществует']);
+        }
         $user = new User();
 
         $user->name = $request->request->get('name');
