@@ -77,7 +77,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <form action="/advert" method="post">
+                        <form action="/Advert-create" method="post">
                         @csrf
                             <input type="hidden" name="advert_id" value="{{ $item->id }}" readonly="">
                             <input type="submit" value="Записаться на поездку">
@@ -114,13 +114,13 @@
 <script>
 
 function showCloseMap(itemId) {
-            document.getElementById("route_map_" + itemId).classList.toggle("showCloseMap");
-            if(document.getElementById("show_map_" + itemId).innerText == "Show map") {
-                document.getElementById("show_map_" + itemId).innerText = "Close map"
-            } else {
-                document.getElementById("show_map_" + itemId).innerText = "Show map"
-            }
-            }
+    document.getElementById("route_map_" + itemId).classList.toggle("showCloseMap");
+        if(document.getElementById("show_map_" + itemId).innerText == "Show map") {
+            document.getElementById("show_map_" + itemId).innerText = "Close map"
+        } else {
+            document.getElementById("show_map_" + itemId).innerText = "Show map"
+          }
+}
 
 function initMap(itemId, json) {
    
@@ -131,7 +131,7 @@ function initMap(itemId, json) {
     center: { 
         lat: 52.2420385,
         lng: 21.0288443     //Polland
-    },
+     },
   });
 
 //   console.log(map);
